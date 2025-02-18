@@ -1,0 +1,27 @@
+.carta{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 15px 0 rgb(14, 13, 13);
+    transition: 0.3s;
+    border: solid 1px black;
+    margin: 1rem;
+    border-radius: 10px ;
+    width: 15rem;
+    height: 20rem;
+    background-color: rgba(24, 24, 37, 0.233);
+    
+}
+.bt{
+    border: solid 1px black;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: rgba(80, 80, 243, 0.774);
+    cursor: pointer;
+}
+
+.text{
+    font-size: 30px;
+    font-weight: bold;
+}

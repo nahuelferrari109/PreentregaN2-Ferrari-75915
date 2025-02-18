@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+.header{
+    margin: 0;
+  
+}
+
+.navbar{
+ border-radius: 15px ;   
+background-color: rgba(31, 21, 87, 0.863);
+}

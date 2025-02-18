@@ -1,0 +1,11 @@
+.icono{
+    font-size: 27px;
+    margin: 20px;
+    margin-top: 3px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+.textIcono{
+    font-size: 20px;
+    text-align: center;
+}
