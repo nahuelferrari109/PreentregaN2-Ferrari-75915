@@ -5,7 +5,7 @@ function ItemListContainer(){
     return(
         <div className="contenedor-cartas">
             <Items nombre={"Producto 1"} precio={100}/>
-            <Items />
+            <Items  />
             <Items nombre={"Producto 3"} precio={180}/>     
         </div>
 
