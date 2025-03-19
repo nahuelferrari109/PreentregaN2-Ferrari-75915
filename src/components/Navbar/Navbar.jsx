@@ -1,5 +1,6 @@
 import './Navbar.css';
 import CartWidget from "../CartWidget/CartWidget"
+import { Link } from 'react-router-dom';
 function Navbar(){
     return(
         <header className='header card-panel  blue-grey lighten-3'>
@@ -7,9 +8,22 @@ function Navbar(){
                 <div  className="nav-wrapper  ">
                     <a href="#" className="brand-logo">Logo</a>
                     <ul className="right hide-on-med-and-down">
-                        <li><a href="">Inicio</a></li>
-                        <li><a href="">Productos</a></li>
-                        <li><a href="">Contacto</a></li>
+                        <li>
+                        
+                            <Link to="/">
+                                Productos
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/categoria/tarjetaDeVideo">
+                                Tarjeta de Videos
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/categoria/procesadores">
+                                Procesadores
+                            </Link>
+                        </li>
                         <CartWidget/>
                     </ul>
                 </div>
