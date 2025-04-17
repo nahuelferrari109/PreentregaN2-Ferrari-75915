@@ -1,0 +1,85 @@
+.carrito-detalle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    height: 200px;
+}
+.text-carrito{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.btn-eliminar{
+        cursor: pointer;
+        border: 4px solid rgb(66, 140, 186);
+        font-family: "system-ui";
+        font-size: 15px;
+        color: rgb(255, 255, 255);
+        padding: 10px 40px;
+        transition: 1279ms;
+        width: 200px;
+        box-shadow: rgba(250, 249, 249, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+        border-radius: 25px;
+        background: linear-gradient(137deg, rgb(249, 4, 4) 0%, rgb(169, 18, 61) 100%);
+        --hover-borderc: #f606068b;
+        --hover-color: #9e848475;
+        --hover-bgc: #ee0a6586;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        --hover-borderSize: 2px;
+        margin: 0.5rem;
+        }
+        
+        .btn-eliminar:hover{
+        color: rgb(236, 241, 245);
+        width: 300px;
+        background: rgb(232, 55, 55) none repeat scroll 0% 0% / auto padding-box border-box;
+        border-color: rgb(189, 7, 77);
+        border-width: 2px;
+        border-style: solid;
+        } 
+.carritoVacio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #0a0000;
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%;
+    font-size: 30px;
+    
+}
+.carrito-total{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #0a0000;
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%;
+    font-size: 30px;
+}
+.text-carrito-total{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#customBtnEliminar{
+    width: 150px !important;
+
+}

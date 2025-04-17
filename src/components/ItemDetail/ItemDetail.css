@@ -42,7 +42,7 @@
     align-items: center;
     --hover-borderSize: 2px;
     }
-    
+
     .btn:hover{
     color: rgb(236, 241, 245);
     width: 400px;
@@ -75,4 +75,11 @@
         width: 100%
         
     }
+.contador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1rem;
+    height: 1rem;
+}
     

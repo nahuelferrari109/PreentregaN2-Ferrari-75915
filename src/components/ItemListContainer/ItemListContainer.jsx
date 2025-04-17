@@ -1,61 +1,63 @@
 import "./ItemListContainer.css";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import Items from "../Items/Items";
-import { productos } from "../../../productos";
-import { fetchData } from "../../fetchData";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import { db } from "../../firebaseConfig";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
-function ItemListContainer(){
-    const [todosLosProductos, setTodosLosProductos] = useState([]); //Trae todos los productos 
-    const [misProductos, setMisProductos] = useState([]); //Trae los productos que quiero mostrar 
-    const [loading, setLoading] = useState(true); //Para mostrar el loading  osea el tiempo de carga
+function ItemListContainer() {
+    const [todosLosProductos, setTodosLosProductos] = useState([]); // Trae todos los productos
+    const [misProductos, setMisProductos] = useState([]); // Trae los productos que quiero mostrar
+    const [loading, setLoading] = useState(true); // Para mostrar el loading
+    const { categoria } = useParams(); // Para traer la categoría que quiero mostrar
 
-    const {categoria} = useParams(); //Para traer la categoria que quiero mostrar
     useEffect(() => {
-        if (todosLosProductos.length === 0) {// Si no hay productos en el estado, los traigo
-            fetchData().then(response => {
-                setTodosLosProductos(response);
-                if (categoria) { //Si hay una categoria seleccionada, filtro los productos
-                    const productosFiltrados = response.filter(el => el.categoria === categoria);
-                    setMisProductos(productosFiltrados);
-                    setLoading(false);
-                } else { //Si no hay categoria seleccionada, muestro todos los productos
-                    setMisProductos(response);
-                    setLoading(false);
-                };
-            })
-                .catch(err => console.error(err));
+        setLoading(true); // Activa el loading mientras se cargan los datos
+
+        // Referencia a la colección de productos
+        let productosRef = collection(db, "productos");
+        let consulta;
+
+        // Si hay una categoría, filtra los productos
+        if (categoria) {
+            consulta = query(productosRef, where("categoria", "==", categoria));
         } else {
-            if (categoria) { //Si hay una categoria seleccionada, filtro los productos
-                const productosFiltrados = todosLosProductos.filter(el => el.categoria === categoria);
-                setMisProductos(productosFiltrados);
-            } else {
-                setMisProductos(todosLosProductos);
-            };
+            consulta = productosRef; // Si no hay categoría, trae todos los productos
         }
 
-    }, [categoria]); //Si la categoria cambia, se vuelve a ejecutar el useEffect
+        // Obtén los documentos de la consulta
+        getDocs(consulta)
+            .then((res) => {
+                let nuevoArray = res.docs.map((el) => {
+                    return { id: el.id, ...el.data() };
+                });
+                console.log(nuevoArray); // Muestra los productos en la consola
+                setTodosLosProductos(nuevoArray); // Actualiza todos los productos
+                setMisProductos(nuevoArray); // Actualiza los productos mostrados
+            })
+            .catch((err) => console.error(err))
+            .finally(() => setLoading(false));
+    }, [categoria]); // Se ejecuta cuando cambia la categoría
 
-            
-            
-    
-return(
+    return (
         <div className="contenedor-cartas">
-        {
-        loading? <Loading/> :
-            misProductos.map(el=>{
-                return(
-                <Items
-                    key={el.id}
-                    id={el.id}
-                    nombre={el.nombre}
-                    precio={el.precio}
-                    />
-            );
-    })}
+            {loading ? (
+                <Loading />
+            ) : (
+                misProductos.map((el) => {
+                    return (
+                        <Items
+                            key={el.id}
+                            id={el.id}
+                            nombre={el.nombre}
+                            precio={el.precio}
+                        />
+                    );
+                })
+            )}
         </div>
-)
-};
+    );
+}
 
 export default ItemListContainer;
